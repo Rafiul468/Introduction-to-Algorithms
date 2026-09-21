@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> adj_list[1005];
+bool vis[1005];
+
+int bfs(int src)
+{
+    queue<int> q;
+    q.push(src);
+    vis[src] = true;
+
+    int sum = 0;
+
+    while(!q.empty())
+    {
+        // Step 1
+        int par = q.front();
+        q.pop();
+
+        // Step 2
+        cout << par << " ";
+
+        sum += par;
+
+        // Step 3
+        for(int child : adj_list[par])
+        {
+            if(vis[child] == false)
+            {
+                q.push(child);
+                vis[child] = true;
+            }
+        }
+    }
+
+    return sum;
+}
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+
+    while(m--)
+    {
+        int a, b;
+        cin >> a >> b;
+
+        adj_list[a].push_back(b);
+        adj_list[b].push_back(a);
+    }
+
+    memset(vis, false, sizeof(vis));
+
+    int ans = bfs(0);
+
+    cout << "\nSum = " << ans << endl;
+
+    return 0;
+}
+
+
+main()
+  ↓
+int ans = bfs(0)
+  ↓
+BFS শুরু হবে 0 থেকে
+  ↓
+প্রতিটি node বের হবে
+  ↓
+sum += par
+  ↓
+সব node শেষ
+  ↓
+return sum
+  ↓
+ans-এর মধ্যে sum জমা হবে
