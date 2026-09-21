@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> adj_list[1005]; //size question e deoa thakbe.
+bool vis[1005];
+
+void bfs(int src)
+{
+    queue<int> q;
+    q.push(src);
+    vis[src] = true;
+
+    while(!q.empty())
+    {
+        //step: 1
+        int par = q.front();
+        q.pop();
+
+        //step:2
+        cout<<par<<" ";
+
+        //step: 3
+        for(int child : adj_list[par])
+        {
+            if(vis[child]==false)
+            {
+            q.push(child);
+            vis[child] = true;
+            }
+        }
+    }
+}
+int main() {
+    int n,m;
+    cin>>n>>m;
+
+    while(m--)
+    {
+        int a,b;
+        cin>>a>>b;
+        adj_list[a].push_back(b);
+        adj_list[b].push_back(a);
+    }
+    memset(vis,false,sizeof(vis));
+    bfs(0);
+    return 0;
+}
