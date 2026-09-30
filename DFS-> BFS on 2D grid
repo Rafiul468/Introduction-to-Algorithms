@@ -59,3 +59,11 @@ int main() {
     bfs(si,sj);
     return 0;
 }
+
+
+
+input: 3 4
+....
+....
+....
+1 2
